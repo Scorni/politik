@@ -25,7 +25,7 @@ class ImportMEPsCommand extends Command
 
         // Output the MEPs to the console for testing purposes
         foreach ($meps as $mep) {
-            $output->writeln(sprintf('%d - %s - %s - %s ', $mep->getId(), $mep->getFullName(), $mep->getCountry(), $mep->getNationalPoliticalGroup()));
+            $output->writeln(sprintf('%d - %s - %s - %s - %s ', $mep->getId(), $mep->getFullName(), $mep->getCountry(), $mep->getNationalPoliticalGroup(), implode(", ", $mep->getContacts())));
         }
 
         return Command::SUCCESS;

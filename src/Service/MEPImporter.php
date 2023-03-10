@@ -33,12 +33,17 @@ class MEPImporter
         $data = $this->serializer->decode($xml, 'xml');
 
         $meps = $this->serializer->denormalize($data['mep'], MEP::class.'[]');
-
+        $urls = [];
         foreach ($meps as $mep) {
-            // Save the MEPtoDelete to the database
+            $formattedName = strtoupper(str_replace(' ', '_', $mep->getFullname()));
+            $urls[] = "https://www.europarl.europa.eu/meps/en/{$mep-> getId()}/{$formattedName}/home";
+        }
+        $mepScraper = new MEPScraper($this->httpClient);
+        $mepContacts = $mepScraper->scrapeContactInfo($urls);
+        foreach ($meps as $index => $mep) {
+            $mep->setContacts($mepContacts[$index]);
             $this->entityManager->persist($mep);
         }
-
         $this->entityManager->flush();
         return $meps;
     }

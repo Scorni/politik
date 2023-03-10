@@ -8,6 +8,7 @@ class MEP
     public string  $fullName;
     public string  $country;
     public string  $nationalPoliticalGroup;
+    private array $contacts;
 
     /**
      * @return string
@@ -71,5 +72,14 @@ class MEP
     public function setNationalPoliticalGroup(string $nationalPoliticalGroup): void
     {
         $this->nationalPoliticalGroup = $nationalPoliticalGroup;
+    }
+    public function getContacts(): array
+    {
+        return $this->contacts;
+    }
+
+    public function setContacts(array $contacts): void
+    {
+        $this->contacts = $contacts;
     }
 }

@@ -1,0 +1,39 @@
+Task 1
+    Requirements
+    PHP 7.4 or higher
+    Composer
+    SQLite extension for PHP
+Installation
+Clone the project from GitHub:
+git clone https://github.com/Scorni/politik.git
+Navigate to the project directory and install the dependencies using Composer:
+    cd politik
+    composer install
+Create a new SQLite database file named database.sqlite in the project root directory:
+    touch database.sqlite
+Update the database configuration in the .env file to use the SQLite driver and set the database path:
+    DATABASE_URL=sqlite:///%kernel.project_dir%/database.sqlite
+
+Usage
+To create the database schema, run the following command:
+    php bin/console doctrine:migrations:migrate
+To populate the database with MEP data, run the following command:
+    php bin/console app:import-meps
+To view the MEP data in the database, you can use a SQLite browser tool or run a SELECT query in the terminal:
+    sqlite3 database.sqlite
+    SELECT * FROM mep;
+Conclusion
+You have now successfully set up and run Task 1 with SQLite! Feel free to explore the codebase and experiment with the project.
+
+Task 2
+
+All from the task has to be done before going to this one
+
+You also have to do the migration to update doctrine's schema:
+    php bin/console doctrine:migrations:migrate
+
+If everything is setup properly,you just have to run :
+    php bin/console app:import-meps
+
+And see the data fecthed form the contacts part
+

@@ -3,13 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\MepRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MepRepository::class)]
 class MEP
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
@@ -22,6 +22,16 @@ class MEP
     #[ORM\Column(length: 255)]
     private ?string $nationalPoliticalGroup = null;
 
+    #[ORM\Column(type: Types::ARRAY)]
+    private array $contacts = [];
+
+
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+        return $this;
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -62,4 +72,15 @@ class MEP
 
         return $this;
     }
+    public function getContacts(): array
+    {
+        return $this->contacts;
+    }
+
+    public function setContacts(array $contacts): void
+    {
+        $this->contacts = $contacts;
+    }
+
+
 }
