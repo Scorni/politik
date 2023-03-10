@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>MEPs</h1>
+    <ul>
+        {% for mep in meps %}
+            <li>{{ mep.id }}</li>
+            <li>{{ mep.fullName }}</li>
+            <li>{{ mep.country }}</li>
+
+        {% endfor %}
+    </ul>
+{% endblock %}
